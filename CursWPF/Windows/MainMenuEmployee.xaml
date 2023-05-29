@@ -1,0 +1,47 @@
+﻿<Window x:Class="CursWPF.Windows.MainMenuEmployee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CursWPF.Windows"
+        mc:Ignorable="d"
+         Title="Автобусные рейсы" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <ContextMenu x:Key="ListView">
+            <MenuItem Header="Добавить" Click="AddTrip" Background="#FFF7F6F6" />
+           
+            <MenuItem Header="Удалить" Command="{Binding DeleteTrip}" Background="#FFF7F6F6" />
+        </ContextMenu>
+    </Window.Resources>
+
+
+    <Grid>
+        <Menu VerticalAlignment="Top" Height="28">
+            <MenuItem Width="36" Height="28" Cursor="Hand">
+                <MenuItem.Background>
+                    <ImageBrush ImageSource="/Png/Arow.png"/>
+                </MenuItem.Background>
+                <MenuItem Header="Выход" Click="Exit"/>
+            </MenuItem>
+            <MenuItem Header="Автобусы" Command="{Binding nav_busesEmploy}"/>
+            <MenuItem Header="Пользователи" Command="{Binding nav_usersEmploy}"/>
+            <MenuItem Header="Билеты" Command="{Binding nav_tickets}"/>
+            <MenuItem Header="Маршруты" Click ="Trip"  />
+            <MenuItem Header="Актуальная информация" Command="{Binding nav_infosEmploy}"/>
+        </Menu>
+
+        <ListView Margin="0,28,0,0" ItemsSource="{Binding Trip}" SelectedItem="{Binding SelectedItem}"  ContextMenu="{StaticResource ListView}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Маршрут" DisplayMemberBinding="{Binding BusStop}"/>
+                    <GridViewColumn Header="Время отбытия" DisplayMemberBinding="{Binding DepartureTime}"/>
+                    <GridViewColumn Header="Время прибытия" DisplayMemberBinding="{Binding ArivalTime}"/>
+                    <GridViewColumn Header="Номер Автобуса" DisplayMemberBinding="{Binding BusNavigation.Number}"/>
+                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Cost}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Frame Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" Margin="0,28,0,0"/>
+    </Grid>
+</Window>

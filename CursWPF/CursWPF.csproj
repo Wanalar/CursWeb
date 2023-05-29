@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Png\Arow.png" />
+    <None Remove="Png\User.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Png\Arow.png" />
+    <Resource Include="Png\User.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CursLib\CursLib.csproj" />
+    <ProjectReference Include="..\CursWeb\CursWeb.csproj" />
+  </ItemGroup>
+
+</Project>
